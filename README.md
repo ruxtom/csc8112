@@ -16,3 +16,7 @@ Pi passwd:
 IOT2020!
 CSC8112IOT2020!
 
+VNC server running on pi on Matthew's account/email
+SSH Running
+Local ip: 192.168.0.25 (static wlan0 address)
+
