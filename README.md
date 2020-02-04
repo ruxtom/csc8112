@@ -14,7 +14,7 @@ Data.py - process for obtaining the data from the UO-API and extracting the desi
 
 Pi passwd:
 IOT2020!d4t4pr0ject
-CSC8112IOT2020!d4t4pr0ject
+
 
 VNC server running on pi on Matthew's account/email
 SSH Running
