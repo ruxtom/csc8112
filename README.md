@@ -19,4 +19,4 @@ IOT2020!d4t4pr0ject
 VNC server running on pi on Matthew's account/email
 SSH Running
 Local ip: 192.168.0.25 (static wlan0 address)
-
+	  192.168.0.26 (static eth0 address)
