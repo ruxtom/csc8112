@@ -20,3 +20,6 @@ VNC server running on pi on Matthew's account/email
 SSH Running
 Local ip: 192.168.0.25 (static wlan0 address)
 	  192.168.0.26 (static eth0 address)
+
+Installed Kafka and Zookeeper on Pi. Following tutorial on https://aknay.github.io/2017/05/11/how-to-install-zookeeper-and-kafka-in-raspberry-pi-3.html , but have realised this uses an outdated version of Java (JDK 8) and thus the UseParNewGC needs updating, as 
+this has been deprecated in JDK 9 and 10
