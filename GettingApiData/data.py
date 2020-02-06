@@ -1,41 +1,47 @@
-import json, requests
+import json
+import requests
+import time
 
 
-
-timesToRun = 0
-timesToRun = input("How many times to run data collection?")
-time = 0
-
+# Gets values from the API a specified number of times, waiting 5 seconds between each request
 def main():
-	global time, timesToRun
-	print("in main")
-	a = int(timesToRun)
-	url = requests.get('https://api.usb.urbanobservatory.ac.uk/api/v2.0a/sensors/entity/floor-1')
-	print("after url")
-	info = json.loads(url.text)
-	if time < a:
-		time = time + 1
-		temperature(info)
+    totalIterations = int(input("How many times would you like to collect the data: "))
+    if type(totalIterations) is not int:
+        raise Exception("Invalid total iterations type")
+    completedIterations = 0
+
+    while completedIterations < totalIterations:
+        url = requests.get("https://api.usb.urbanobservatory.ac.uk/api/v2.0a/sensors/entity/floor-1")
+        info = json.loads(url.text)
+        temperature(info)
+        completedIterations += 1
+        time.sleep(5)
+        print("Iteration: ", completedIterations, "/", totalIterations)
+        print("Time left: ", (totalIterations - completedIterations)*5, "s")
 
 
+# Extracts the temperature values from the API information
+def temperature(info):
+    data = _data_extractor(info, "C3 HTG Pump Power")
+    print(data)
 
-def temperature(z):
-	if z != None:
-		tempSensors = []
-		data = []
-		#for i in z["items"]:
-		for x in z["feed"]:
-			if x["metric"] == "C3 HTG Pump Power":
-				tempSensors.append(x)
 
-	for a in tempSensors:
-		#print(a)
-		for b in a["timeseries"]:
-			value = b["latest"]["value"]
-			data.append(value)
+# Loops through the info array, extracting the specified metric values
+def _data_extractor(info, metric):
+    sensors, data = []
+    if info is None:
+        return
+		
+    for feed in info["feed"]:
+        if feed["metric"] == metric:
+            sensors.append(feed)
 
-	print (data)
-	main()
+    for sensor in sensors:
+        for timeseries in sensor["timeseries"]:
+            value = timeseries["latest"]["value"]
+            data.append(value)
 
-#print (info)
+    return data
+
+
 main()
