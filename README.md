@@ -8,7 +8,7 @@ Project documentation for CSC8112 Coursework, dataflow orchestration.
 - Urban Observatory API
 - Raspberry Pi
 - Apache Kapfka
-- Amaazon AWS
+- Amazon AWS
 
 ## Documents:
 
