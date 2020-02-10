@@ -1,7 +1,7 @@
 import json
 import requests
+import collections
 import time
-
 
 # Gets values from the API a specified number of times, waiting 5 seconds between each request
 def main():
@@ -28,7 +28,8 @@ def temperature(info):
 
 # Loops through the info array, extracting the specified metric values
 def _data_extractor(info, metric):
-    sensors, data = []
+    sensors = []
+    data = []
     if info is None:
         return
 		
@@ -42,6 +43,5 @@ def _data_extractor(info, metric):
             data.append(value)
 
     return data
-
 
 main()
