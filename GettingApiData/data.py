@@ -22,25 +22,27 @@ def main():
 
 # Extracts the temperature values from the API information
 def temperature(info):
-    data = _data_extractor(info, "C3 HTG Pump Power")
+    data = _data_extractor(info, "Power")
     print(data)
 
 
 # Loops through the info array, extracting the specified metric values
-def _data_extractor(info, metric):
+def _data_extractor(info, metricWanted):
     sensors = []
     data = []
     if info is None:
         return
 		
     for feed in info["feed"]:
-        if feed["metric"] == metric:
+        metric = feed["metric"]
+        if metricWanted in metric:
             sensors.append(feed)
 
     for sensor in sensors:
         for timeseries in sensor["timeseries"]:
-            value = timeseries["latest"]["value"]
-            data.append(value)
+            if "latest" in timeseries:
+                value = timeseries["latest"]["value"]
+                data.append(value)
 
     return data
 
