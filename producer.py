@@ -1,7 +1,6 @@
 import json
 from kafka import KafkaProducer
 
-
 def send2aws():
     producer = KafkaProducer(
         value_serializer=lambda v: json.dumps(v).encode('utf-8'),
@@ -12,7 +11,7 @@ def send2aws():
     for i in range(10):
         data = {
             "device": "temperature",
-            "tem": 36,
+            "tem": 100000,
             "room": i
         }
         print(data)
