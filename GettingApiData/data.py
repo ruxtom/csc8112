@@ -20,21 +20,22 @@ def main():
     info = json.loads(url.text)
     temperature(info)
     completedIterations += 1
-    time.sleep(5)
-    print("Iteration: ", completedIterations, "/", totalIterations)
-    print("Time left: ", (totalIterations - completedIterations)*5, "s")
-    send = {
-        "data":json.dumps(temperature(info))
-    }
-    print(send)
-    producer.send('usb-data', send)
-    producer.close()
+    #time.sleep(5)
+    #print("Iteration: ", completedIterations, "/", totalIterations)
+    #print("Time left: ", (totalIterations - completedIterations)*5, "s")
+    #send = {
+    #    "data":json.dumps(temperature(info))
+    #}
+    #print(send)
+    #producer.send('usb-data', send)
+    #producer.close()
+    print("After producer close")
 
 
 # Extracts the temperature values from the API information
 def temperature(info):
     data = _data_extractor(info, "Power")
-    print(data)
+    #print(data)
     return data
 
 
@@ -43,23 +44,28 @@ def _data_extractor(info, metricWanted):
     sensors = []
     metrics = []
     data = []
+    whole = []
     if info is None:
         return
         
     for feed in info["feed"]:
         metric = feed["metric"]
         if metricWanted in metric:
-            sensors.append(feed)
-            metrics.append(metric)
+            if metric != "Power":
+                sensors.append(feed)
+                metrics.append(metric)
 
     for sensor in sensors:
+        name = sensor["metric"]
         for timeseries in sensor["timeseries"]:
             if "latest" in timeseries:
+                
                 value = timeseries["latest"]["value"]
+                whole.append(name +" " + str(value))
+                
                 data.append(value)
 
-    print(metric)
-    
+    print(whole)
     return data
 
 main()
