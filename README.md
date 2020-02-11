@@ -7,7 +7,7 @@ Project documentation for CSC8112 Coursework, dataflow orchestration.
 - Python 3 and Pycharm
 - Urban Observatory API
 - Raspberry Pi
-- Apache Kapfka
+- Apache Kafka
 - Amazon AWS
 
 ## Documents:
