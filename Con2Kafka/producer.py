@@ -12,7 +12,7 @@ def send2aws():
     for i in range(10):
         data = {
             "device": "temperature",
-            "tem": 101010101,
+            "tem": 23,
             "room": i
         }
         print(data)
