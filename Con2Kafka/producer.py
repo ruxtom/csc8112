@@ -1,6 +1,7 @@
 import json
 from kafka import KafkaProducer
 
+
 def send2aws():
     producer = KafkaProducer(
         value_serializer=lambda v: json.dumps(v).encode('utf-8'),

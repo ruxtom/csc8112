@@ -2,7 +2,7 @@ from kafka import KafkaConsumer
 import json
 
 
-def aws2local2():
+def aws2local1():
     consumer = KafkaConsumer('usb', group_id='tem1',
                              bootstrap_servers=['ec2-18-207-191-122.compute-1.amazonaws.com:9092',
                                                 'ec2-3-81-136-58.compute-1.amazonaws.com:9092',
@@ -14,4 +14,4 @@ def aws2local2():
 
 
 if __name__ == '__main__':
-    aws2local2()
+    aws2local1()
