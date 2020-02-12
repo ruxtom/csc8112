@@ -12,11 +12,12 @@ def send2aws():
     for i in range(10):
         data = {
             "device": "temperature",
-            "tem": 23,
+            "tem": 100,
             "room": i
         }
         print(data)
         producer.send('usb', data)
+        producer.flush()
     producer.close()
 
 
