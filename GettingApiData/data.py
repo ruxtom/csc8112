@@ -52,8 +52,9 @@ def _data_extractor(info, metricWanted):
         metric = feed["metric"]
         if metricWanted in metric:
             if metric != "Power":
-                sensors.append(feed)
-                metrics.append(metric)
+                if "Voltage" not in metric:
+                    sensors.append(feed)
+                    metrics.append(metric)
 
     for sensor in sensors:
         name = sensor["metric"]
