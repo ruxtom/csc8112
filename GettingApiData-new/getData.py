@@ -4,7 +4,7 @@ import requests
 from kafka import KafkaProducer
 
 
-# Gets values from the API a specified number of times, waiting 5 seconds between each request
+# Specify kafka server address, call getPage and get raw data from API
 def send2cloud(metric):
     producer = KafkaProducer(
         value_serializer=lambda v: json.dumps(v).encode('utf-8'),
@@ -14,7 +14,7 @@ def send2cloud(metric):
     )
     page = getPage(metric)
     for i in range(1, page + 1):
-        print("Sending data..." + "page:" + str(i))
+        print("metric: " + metric + " - Sending data..." + "page:" + str(i))
         rawData(metric, producer, i)
     producer.close()
 
@@ -41,10 +41,11 @@ def rawData(metric, producer, i):
             producer.flush()
 
 
+# Get the total number of pages of this metric from the pageCount parameter of the API,
+# and determine the number of loops when obtaining raw data.
 def getPage(metric):
     url = requests.get(
         'https://api.usb.urbanobservatory.ac.uk/api/v2.0a/sensors/entity?metric="' + metric + '"&page=1')
     info = json.loads(url.text)
     data_page = jsonpath.jsonpath(info, '$..[pageCount]')
-    print(data_page)
     return data_page[0]

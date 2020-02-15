@@ -10,12 +10,12 @@ class sendThread(threading.Thread):
         self.metric = metric
 
     def run(self):
-        print("Thread Start：" + self.name)
-        send_message(self.name, self.metric)
-        print("Thread End：" + self.name)
+        print("Thread Start: " + self.name)
+        send_message(self.metric)
+        print("Thread End: " + self.name)
 
 
-def send_message(threadName, metric):
+def send_message(metric):
     getData.send2cloud(metric)
 
 
@@ -23,6 +23,7 @@ thread1 = sendThread(1, "temperatureThread", 'room temperature')
 thread2 = sendThread(2, "humidityThread", 'humidity')
 thread3 = sendThread(3, "CO2Thread", 'CO2')
 
+# Start three independent threads, get temperature, humidity, CO2 from API
 thread1.start()
 thread2.start()
 thread3.start()
