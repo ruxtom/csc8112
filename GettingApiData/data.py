@@ -41,9 +41,9 @@ def main():
                 send = {
                     "data":json.dumps(toSend[c])
                 }
-                producer.send('usb', send)
-                producer.flush()
-        producer.close()
+        #         producer.send('usb', send)
+        #         producer.flush()
+        # producer.close()
         print("Unusable sensors: " + str(failedSensors))
    
 # Extracts the temperature values from the API information

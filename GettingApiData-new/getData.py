@@ -26,17 +26,18 @@ def rawData(metric, producer, i):
     elif metric == "humidity":
         topic = "usb-hum"
     else:
-        topic = "usb-CO2"
+        topic = "usb-co2"
     url = requests.get(
         'https://api.usb.urbanobservatory.ac.uk/api/v2.0a/sensors/entity?metric="' + metric + '"&page=' + str(i))
     info = json.loads(url.text)
     data_id = jsonpath.jsonpath(info, '$[items].[entityId]')
     for i in range(len(data_id) + 1):
         data_room = jsonpath.jsonpath(info, '$[items][' + str(i) + '][name]')
+        data_floor = jsonpath.jsonpath(info, '$[items][' + str(i) + '][meta][buildingFloor]')
         data_time = jsonpath.jsonpath(info, '$[items][' + str(i) + '].[time]')
         data_value = jsonpath.jsonpath(info, '$[items][' + str(i) + '].[value]')
-        if (type(data_room) != bool) & (type(data_value) != bool):
-            data_compose = {'room': data_room, metric: []}
+        if (type(data_room) != bool) & (type(data_value) != bool) & (type(data_floor) != bool):
+            data_compose = {'room': data_room, 'floor': data_floor, metric: []}
             for data_time, data_value in zip(data_time, data_value):
                 sub_time = data_time[0:10] + " " + data_time[11:19]
                 data_compose[metric].append({sub_time: data_value})
