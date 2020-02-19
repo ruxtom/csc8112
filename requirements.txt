@@ -3,3 +3,4 @@ kafka-python
 requests
 plotly==4.5.0
 psutil
+flask

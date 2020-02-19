@@ -1,8 +1,11 @@
 from kafka import KafkaConsumer
+from graphing import createGraph
 import json
 
 
 def hum_consumer():
+    xAxis = []
+    yAxis = []
     consumer = KafkaConsumer('usb-hum',
                              bootstrap_servers=['ec2-34-228-191-220.compute-1.amazonaws.com:9092',
                                                 'ec2-52-23-217-206.compute-1.amazonaws.com:9092',
@@ -21,6 +24,9 @@ def hum_consumer():
         # get average humidity per room
         ave_hum = sum_hum / len(value)
         print(room + ' Average humidity: %.2f' % ave_hum)
+        xAxis.append(room)
+        yAxis.append(round(ave_hum, 2))
+    createGraph("Average Room Humidity", xAxis, yAxis, "hum")
 
 
 if __name__ == '__main__':
