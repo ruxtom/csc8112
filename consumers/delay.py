@@ -11,7 +11,8 @@ def latency_cosumer():
                              bootstrap_servers=['ec2-34-228-191-220.compute-1.amazonaws.com:9092',
                                                 'ec2-52-23-217-206.compute-1.amazonaws.com:9092',
                                                 'ec2-54-152-219-229.compute-1.amazonaws.com:9092'],
-                             value_deserializer=lambda m: json.loads(m.decode('utf-8'))
+                             value_deserializer=lambda m: json.loads(m.decode('utf-8')),
+                             consumer_timeout_ms=10000
                              )
     for message in consumer:
         sum_value += 1
