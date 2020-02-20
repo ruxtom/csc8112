@@ -21,7 +21,7 @@ def tem_consumer():
             # key is timestamp
             for key in element:
                 sum_tem = element[key] + sum_tem
-        # get average temperature per room
+        # get average temperature per sensor
         ave_tem = sum_tem / len(value)
         print(room + ' Average temperature: %.2f' % ave_tem)
         xAxis.append(room)
