@@ -22,7 +22,7 @@ def co2_consumer():
             # key is timestamp
             for key in element:
                 sum_co2 = element[key] + sum_co2
-        # get average CO2 per room
+        # get average CO2 per sensor
         ave_co2 = sum_co2 / len(value)
         print(room + ' Average CO2: %.2f' % ave_co2)
         xAxis.append(room)
