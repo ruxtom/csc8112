@@ -47,8 +47,8 @@ def rawData(metric, producer, i):
             producer.send(topic, data_compose)
             producer.flush()
 
-                # Get the total number of pages of this metric from the pageCount parameter of the API,
-                # and determine the number of loops when obtaining raw data.
+            # Get the total number of pages of this metric from the pageCount parameter of the API,
+            # and determine the number of loops when obtaining raw data.
 
 
 def getPage(metric):
