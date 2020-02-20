@@ -1,8 +1,12 @@
+import datetime
+
 from kafka import KafkaConsumer
 import json
 
 
 def tem_consumer():
+    time_difference = 0
+    sum_value = 0
     consumer = KafkaConsumer('usb-tem',
                              bootstrap_servers=['ec2-34-228-191-220.compute-1.amazonaws.com:9092',
                                                 'ec2-52-23-217-206.compute-1.amazonaws.com:9092',
@@ -10,17 +14,12 @@ def tem_consumer():
                              value_deserializer=lambda m: json.loads(m.decode('utf-8'))
                              )
     for message in consumer:
-        sum_tem = 0
-        room = message.value['room'][0]
-        value = message.value['room temperature']
-        # get each metric value
-        for element in value:
-            # key is timestamp
-            for key in element:
-                sum_tem = element[key] + sum_tem
-        # get average temperature per room
-        ave_tem = sum_tem / len(value)
-        print(room + ' Average temperature: %.2f' % ave_tem)
+        sum_value += 1
+        time_difference = time_difference + (
+                (datetime.datetime.now() - datetime.datetime.strptime(message.value['time'],
+                                                                      '%Y-%m-%d %H:%M:%S.%f')).microseconds / 1000)
+        ave_time = time_difference / sum_value
+        print(' Average time difference: %.2fms' % ave_time)
 
 
 if __name__ == '__main__':

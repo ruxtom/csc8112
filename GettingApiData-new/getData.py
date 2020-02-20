@@ -1,3 +1,4 @@
+import datetime
 import json
 import jsonpath
 import requests
@@ -37,10 +38,11 @@ def rawData(metric, producer, i):
         data_time = jsonpath.jsonpath(info, '$[items][' + str(i) + '].[time]')
         data_value = jsonpath.jsonpath(info, '$[items][' + str(i) + '].[value]')
         if (type(data_room) != bool) & (type(data_value) != bool) & (type(data_floor) != bool):
-            data_compose = {'room': data_room, 'floor': data_floor, metric: []}
+            data_compose = {'room': data_room, 'floor': data_floor, 'time': None, metric: []}
             for data_time, data_value in zip(data_time, data_value):
                 sub_time = data_time[0:10] + " " + data_time[11:19]
                 data_compose[metric].append({sub_time: data_value})
+                data_compose['time'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
                 print(data_compose)
                 producer.send(topic, data_compose)
                 producer.flush()

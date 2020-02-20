@@ -24,6 +24,7 @@ thread2 = sendThread(2, "humidityThread", 'humidity')
 thread3 = sendThread(3, "CO2Thread", 'CO2')
 
 # Start three independent threads, get temperature, humidity, CO2 from API
+
 thread1.start()
 thread2.start()
 thread3.start()
