@@ -43,12 +43,12 @@ def rawData(metric, producer, i):
                 sub_time = data_time[0:10] + " " + data_time[11:19]
                 data_compose[metric].append({sub_time: data_value})
                 data_compose['time'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
-                print(data_compose)
-                producer.send(topic, data_compose)
-                producer.flush()
+            print(data_compose)
+            producer.send(topic, data_compose)
+            producer.flush()
 
-                # Get the total number of pages of this metric from the pageCount parameter of the API,
-                # and determine the number of loops when obtaining raw data.
+            # Get the total number of pages of this metric from the pageCount parameter of the API,
+            # and determine the number of loops when obtaining raw data.
 
 
 def getPage(metric):
