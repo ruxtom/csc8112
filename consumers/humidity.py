@@ -21,7 +21,7 @@ def hum_consumer():
             # key is timestamp
             for key in element:
                 sum_hum = element[key] + sum_hum
-        # get average humidity per room
+        # get average humidity per sensor
         ave_hum = sum_hum / len(value)
         print(room + ' Average humidity: %.2f' % ave_hum)
         xAxis.append(room)
