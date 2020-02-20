@@ -27,7 +27,7 @@ def co2_consumer():
         print(room + ' Average CO2: %.2f' % ave_co2)
         xAxis.append(room)
         yAxis.append(round(ave_co2, 2))
-    createGraph("Average Room CO2", xAxis, yAxis, "co2")
+    createGraph("Average Room CO2", xAxis, yAxis, "%", "co2")
 
 
 if __name__ == '__main__':

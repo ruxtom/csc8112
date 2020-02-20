@@ -27,7 +27,7 @@ def hum_consumer():
         print(room + ' Average humidity: %.2f' % ave_hum)
         xAxis.append(room)
         yAxis.append(round(ave_hum, 2))
-    createGraph("Average Room Humidity", xAxis, yAxis, "hum")
+    createGraph("Average Room Humidity", xAxis, yAxis, "%", "hum")
 
 
 if __name__ == '__main__':

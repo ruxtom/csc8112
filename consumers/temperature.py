@@ -27,7 +27,7 @@ def tem_consumer():
         print(room + ' Average temperature: %.2f' % ave_tem)
         xAxis.append(room)
         yAxis.append(round(ave_tem, 2))
-    createGraph("Average Room Temperature", xAxis, yAxis, "temp")
+    createGraph("Average Room Temperature", xAxis, yAxis, "C", "temp")
 
 
 if __name__ == '__main__':
