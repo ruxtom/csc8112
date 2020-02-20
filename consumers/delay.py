@@ -4,7 +4,7 @@ from kafka import KafkaConsumer
 import json
 
 
-def tem_consumer():
+def latency_cosumer():
     time_difference = 0
     sum_value = 0
     consumer = KafkaConsumer('usb-tem',
@@ -19,8 +19,8 @@ def tem_consumer():
                 (datetime.datetime.now() - datetime.datetime.strptime(message.value['time'],
                                                                       '%Y-%m-%d %H:%M:%S.%f')).microseconds / 1000)
         ave_time = time_difference / sum_value
-        print(' Average time difference: %.2fms' % ave_time)
+        print('Average latency: %.2fms' % ave_time)
 
 
 if __name__ == '__main__':
-    tem_consumer()
+    latency_cosumer()
