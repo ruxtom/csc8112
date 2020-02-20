@@ -10,3 +10,7 @@ def createGraph(title, xAxis, yAxis, outputFileName):
                    ".html")
     tStop = process_time()
     print("Total graphing time:", tStop-tStart)
+
+
+if __name__ == '__main__':
+    createGraph("Average CO2 %", ["room1", "room2", "room3", "room4"], [12, 5, 3, 2], "co2")
