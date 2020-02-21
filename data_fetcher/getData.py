@@ -9,9 +9,9 @@ from kafka import KafkaProducer
 def send2cloud(metric):
     producer = KafkaProducer(
         value_serializer=lambda v: json.dumps(v).encode('utf-8'),
-        bootstrap_servers=['ec2-34-228-191-220.compute-1.amazonaws.com:9092',
-                           'ec2-52-23-217-206.compute-1.amazonaws.com:9092',
-                           'ec2-54-152-219-229.compute-1.amazonaws.com:9092']
+        bootstrap_servers=['ec2-54-175-3-58.compute-1.amazonaws.com:9092',
+                           'ec2-18-212-22-95.compute-1.amazonaws.com:9092',
+                           'ec2-174-129-110-118.compute-1.amazonaws.com:9092']
     )
     page = getPage(metric)
     for i in range(1, page + 1):

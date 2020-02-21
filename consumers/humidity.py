@@ -7,9 +7,9 @@ def hum_consumer():
     xAxis = []
     yAxis = []
     consumer = KafkaConsumer('usb-hum',
-                             bootstrap_servers=['ec2-34-228-191-220.compute-1.amazonaws.com:9092',
-                                                'ec2-52-23-217-206.compute-1.amazonaws.com:9092',
-                                                'ec2-54-152-219-229.compute-1.amazonaws.com:9092'],
+                             bootstrap_servers=['ec2-54-175-3-58.compute-1.amazonaws.com:9092',
+                                                'ec2-18-212-22-95.compute-1.amazonaws.com:9092',
+                                                'ec2-174-129-110-118.compute-1.amazonaws.com:9092'],
                              value_deserializer=lambda m: json.loads(m.decode('utf-8')),
                              consumer_timeout_ms=10000
                              )
