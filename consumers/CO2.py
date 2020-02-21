@@ -25,7 +25,7 @@ def co2_consumer():
         # get average CO2 per sensor
         ave_co2 = sum_co2 / len(value)
         print(room + ' Average CO2: %.2f' % ave_co2)
-        xAxis.append(room)
+        xAxis.append(str(room))
         yAxis.append(round(ave_co2, 2))
     createGraph("Average Room CO2", xAxis, yAxis, "%", "co2")
 
